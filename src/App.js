@@ -1,32 +1,39 @@
-import { useState } from 'react';
-import './App.css';
+import { useState } from 'react';  // Importing useState hook from React
+import './App.css';  // Importing the stylesheet
 
 function App() {
+  // State to store the result of calculations
+  const [result, setResult] = useState("");  // Destructuring assignment for useState
 
-  const [result, setResult] = useState("");
-
-  const handleClick = (e) =>{
-    setResult(result.concat(e.target.id));
+  // Function to handle button clicks and update the result state
+  const handleClick = (e) => {
+    setResult(result.concat(e.target.id));  // Concatenate the clicked button's id to the result
   };
 
-  const clear = () =>{
-    setResult("");
+  // Function to clear the result
+  const clear = () => {
+    setResult("");  // Set the result to an empty string
   }
 
-  const deleteElement = () =>{
-    setResult(result.slice(0, -1));
+  // Function to delete the last character from the result
+  const deleteElement = () => {
+    setResult(result.slice(0, -1));  // Remove the last character from the result
   };
 
-  const calculate = () =>{
-    try{
-      setResult(eval(result).toString());
-    }catch(error){
-      setResult("NaN");
+  // Function to evaluate and display the result
+  const calculate = () => {
+    try {
+      // Using eval to calculate the result (with caution)
+      setResult(eval(result).toString());  // Evaluate the result and convert it to a string
+    } catch (error) {
+      // Handling invalid expressions
+      setResult("NaN");  // Display "NaN" for invalid expressions
     }
   }
 
   return (
     <>
+      {/* button for calculator */}
       <div className="container">
       <div className="calculator">
         <input type="text" id="inputBox" value={result} placeholder="0" />
